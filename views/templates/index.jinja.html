@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .outerContainer {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            color: #444;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .headerInfo{
+            width: 100%;
+            margin-bottom: 20px;
+            line-height: 2; 
+        }
+        .headerInfoBox{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .companyName{
+            width: 60%;
+            line-height: 1.5;
+        }
+        .invoiceHeading{
+            width: 30%;
+            line-height: 1.5;
+        }
+        .heading{
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: black;
+            margin: 10px 0;
+        }
+        .highlight{
+            font-weight: 700;
+            color: black;
+        }
+        .alignRight{
+            text-align: right;
+        }
+        .alignLeft{
+            text-align: left;
+        }
+        .alignCenter{
+            text-align: center;
+        }
+        .userMessage {
+            width: 100%;
+            min-height: 200px;
+            line-height: 1.5;
+            margin: 30px 0;
+        }
+        .w-100{
+            width: 100%;
+        }
+        .billingTable{
+            border-collapse: collapse;
+            line-height: 2;
+            margin-top: 20px;
+        }
+        .billingTable th:nth-child(1){
+            width: 5%;
+        }
+       .billingTable th:nth-child(2){
+            width: 40%;
+        }
+        .billingTable td:nth-child(2){
+            line-height: 1.5;
+            padding: 2px;
+        }
+        .billingTable th:nth-child(3){
+            width: 15%;
+        }
+        .billingTable th:nth-child(4){
+            width: 20%;
+        }
+        .billingTable th:nth-child(5){
+            width: 20%;
+        }
+        .itemsTotal{
+            line-height: 3;
+        }
+        .taxesTotal{
+            line-height: 3;
+        }
+        .taxPercentage{
+            padding-left: 10%;
+        }
+        .conclusionMessage{
+            width: 100%;
+            min-height: 100px;
+            margin: 20px 0;
+        }
+        .preserveFormat{
+            white-space: pre-wrap;
+        }
+    </style> 
+</head>
+<body>
+    <div class='outerContainer'>
+        <div class="headerInfo">
+            {% include 'headerInfo.jinja.html' %}
+        </div>
+        
+        <hr/>
+        <div class="userMessage preserveFormat">
+            {%- if data['userMessage'] -%}
+                {{data['userMessage']}}
+            {%- endif -%}
+        </div>
+        {% include 'billing.jinja.html' %}
+        <div class="conclusionMessage preserveFormat">
+            {%- if data['conclusionMessage'] -%}
+                {{data['conclusionMessage']}}
+            {%- endif -%}            
+        </div>
+    </div>
+</body>
+</html>
+

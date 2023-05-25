@@ -1,0 +1,47 @@
+<table class="billingTable w-100">
+  <thead class="highlight">
+    <tr>
+      <th class="alignLeft">#</th>
+      <th class="alignCenter">Description</th>
+      <th class="alignCenter">Qty</th>
+      <th class="alignCenter">{{data['unitPriceName']}}</th>
+      <th class="alignRight">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% if data['items'] %}
+      {% for item in data['items'] %}
+        <tr>
+          <td class="alignLeft">{{loop.index}}</td>
+          <td class="alignCenter">{{item['description']}}</td>
+          <td class="alignCenter">{{item['quantity']}}</td>
+          <td class="alignCenter">{{item['unitPrice']}}</td>
+          <td class="alignRight">{{data['currencySymbol']}} {{item['lineTotal']}}</td>  
+        </tr>
+      {% endfor %}
+    {% endif %}
+    
+
+    <tr class="itemsTotal highlight">
+      <td colspan="3"><b>{{data['subTotalName']}}</b></td>
+      <td class="alignRight" colspan="2"><b>{{data['currencySymbol']}} {{data['subTotal']}}</b></td>
+    </tr>
+
+    {% if data['items'] %}
+      {% for tax in data['taxes'] %}
+        <tr class="highlight">
+          <td class="alignLeft" colspan="2">{{tax['taxName']}}</td>
+          <td class="taxPercentage">{{tax['taxPercentage']}}%</td>
+          <td class="alignRight" colspan="2">{{data['currencySymbol']}} {{tax['taxAmount']}}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}    
+
+    <tr class="taxesTotal highlight">
+      <td colspan="3"><b>{{data['totalWithTaxName']}}</b></td>
+      <td class="alignRight" colspan="2"><b>{{data['currencySymbol']}} {{data['totalWithTax']}}</b></td>
+    </tr>
+
+  </tbody>
+</table>
